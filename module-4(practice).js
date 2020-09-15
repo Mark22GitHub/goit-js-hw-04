@@ -304,3 +304,229 @@
 //     return elem < 10 ? true : false;
 //   }
 // }
+
+// =========call , bind=======
+
+// const hotel1 = {
+//   name: "Rixos",
+//   stars: "5",
+//   capacity: 300,
+// };
+
+// const hotel2 = {
+//   name: "Jazz",
+//   stars: "5",
+//   capacity: 200,
+// };
+
+// const hotel3 = {
+//   name: "Dnepr",
+//   stars: "2+",
+//   capacity: 5000,
+// };
+
+// const greetGuests = function (guest) {
+//   console.log(`${guest} , welcome to our incredible ${this.name} hotel`);
+// };
+
+// greetGuests.call(hotel1, "Armen");
+
+// const greetInJazz = greetGuests.bind(hotel2);
+// greetInJazz("Donald Trump");
+
+// let ladder = {
+//   step: 0,
+//   up() {
+//     this.step++;
+//     return this;
+//   },
+//   down() {
+//     this.step--;
+//     return this;
+//   },
+//   showStep: function () {
+//     // показывает текущую ступеньку
+//     console.log(this.step);
+//     return this;
+//   },
+// };
+// // Теперь, если нам нужно сделать несколько последовательных вызовов, мы можем выполнить это так:
+// // ladder.up();
+// // ladder.up();
+// // ladder.down();
+// // ladder.showStep(); // 1
+// // Измените код методов up, down и showStep таким образом, чтобы их вызов можно было сделать по цепочке, например так:
+// ladder.up().up().up().down().showStep(); // 1
+
+// const arrayFilms = [];
+// let morePictures = {};
+
+// const actor = function (name) {
+//   morePictures[name] = [];
+
+//   return function film(pictures) {
+//     arrayFilms.push(pictures);
+
+//     morePictures[name].push(pictures);
+
+//     console.log(`${name} act at ${pictures}`);
+//   };
+// };
+
+// const keanuReevs = actor("Keanu Reevs");
+// keanuReevs("Matrix");
+// keanuReevs("John Vick");
+// keanuReevs("KOLBASA");
+
+// console.log(arrayFilms);
+
+// const jasonStatham = actor("Jason Statham");
+// jasonStatham("Transorter");
+// jasonStatham("Bla-bla");
+// jasonStatham("LaLa");
+
+// console.log(morePictures);
+
+// ===============================================
+// const userName = prompt("Tell your name");
+// // console.log(userName);
+// const greeting = "Hello";
+
+// console.log(`${greeting} , ${userName}`);
+// ===============================================
+
+// Create own bind function
+
+// function logPerson() {
+//   console.log(`Person: ${this.name}, ${this.age}, ${this.job}`);
+// }
+
+// items = [];
+
+// let person1 = {
+//   name: "Vova",
+//   age: 30,
+//   job: "PHP Developer",
+// };
+
+// let person2 = {
+//   name: "Sara",
+//   age: 30,
+//   job: "Project manager",
+// };
+
+// bind(person1, logPerson)();
+// bind(person2, logPerson)();
+
+// ==========================================
+
+// const user = {
+//   name: "Mark",
+//   age: 27,
+//   phone: +30677777777,
+//   email: "e-mail@gmail.com",
+
+//   toShowprops() {
+//     console.log(this.name);
+//     console.log(this.age);
+//     console.log(this.phone);
+//     console.log(this.email);
+//   },
+// };
+
+// const user2 = {
+//   name: "Andrew",
+// };
+
+// const user3 = {
+//   name: "Zacharia",
+//   age: 102,
+
+//   toUpdateAge(value) {
+//     this.age = value;
+//     return (this.age = value);
+//   },
+// };
+
+// const example = function (callback, value) {
+//   return callback(value);
+// };
+
+// example(user.toShowprops.bind(user));
+// example(user.toShowprops.bind(user2));
+// console.log(example(user3.toUpdateAge.bind(user), 20));
+
+// ==========================================
+// callback
+
+// const toGetResult = function (callback, ...value) {
+//   return callback(...value);
+// };
+
+// function toGetSum(a, b, c) {
+//   return a + b + c;
+// }
+
+// function toGetMultiplay(x, y) {
+//   return x * y;
+// }
+
+// // toGetResult((val) => {
+// //   console.log(val % 2);
+// // }, 20);
+
+// console.log(toGetResult(toGetSum, 21, 12, 2));
+
+//  ==========================================
+// let arrayName = [];
+// let arrayPhone = [];
+// let arrayEmail = [];
+
+// const toGetForm = function (name, phone, email, ...arr) {
+//     console.log(arr);
+
+//   arrayName.push(name);
+//   arrayPhone.push(phone);
+//   arrayEmail.push(email);
+// };
+
+// toGetForm("name", "phone", "email", 1, 2, 3, 4, 5);
+// toGetForm("Mark", "1111111", "email@gmail.com", 1, 2, 3, 4, 5);
+
+// console.log(arrayName);
+// console.log(arrayPhone);
+// console.log(arrayEmail);
+// ==========================================
+
+// const product = [
+//   {
+//     name: "Volvo",
+//     price: 50000,
+//     quantity: 4,
+//     premium: true,
+//   },
+//   {
+//     name: "BMW",
+//     price: 70000,
+//     quantity: 2,
+//     premium: true,
+//   },
+//   {
+//     name: "Audi",
+//     price: 80000,
+//     quantity: 3,
+//     premium: true,
+//   },
+// ];
+
+// const totalSum = (value, arr) => {
+//   //   console.log(arr);
+//   for (let obj of arr) {
+//     if (obj.name === value) return obj.quantity * obj.price;
+//   }
+//   return "There's no product you've search";
+// };
+
+// console.log(totalSum("Volvo", product));
+// console.log(totalSum("MAzda", product));
+// console.log(totalSum("Audi", product));
